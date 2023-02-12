@@ -1,7 +1,4 @@
 ---
-name: "Repository Linting"
-description: "Lint all yaml files in this repository"
-
 "on":
   pull_request:
     branches:

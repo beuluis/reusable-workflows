@@ -1,7 +1,4 @@
 ---
-name: "NPM Publish"
-description: "Publish a NPM package to the NPM registry"
-
 "on":
   workflow_call:
     inputs:
