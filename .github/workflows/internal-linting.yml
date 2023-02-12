@@ -8,7 +8,7 @@ name: Lint all yaml files in repository
   push:
 
 jobs:
-  Yamllint:
+  yamllint:
     runs-on: 'ubuntu-latest'
     steps:
       - uses: actions/checkout@v3
