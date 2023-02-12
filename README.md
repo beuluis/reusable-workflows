@@ -26,6 +26,25 @@
 
 Reusable workflows for all my github stuff. See [reusing-workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows).
 
+## Workflows
+
+### [NPM Publish](.github/workflows/publish-npm.yml)
+
+Publish a NPM package to the NPM registry.
+
+#### Inputs
+
+| Name           | Description                 | Type     | Default  | Required |
+| -------------- | --------------------------- | -------- | -------- | -------- |
+| `dist_tag`     | NPM dist tag to publish to. | `string` | `latest` | `false`  |
+| `node_version` | Node version to build on.   | `string` | `18`     | `false`  |
+
+#### Secrets
+
+| Name        | Description                                 | Required |
+| ----------- | ------------------------------------------- | -------- |
+| `NPM_TOKEN` | NPM token with right access for publishing. | `false`  |
+
 ## Directory structure and file naming
 
 > Reusable workflows are YAML-formatted files, very similar to any other workflow file. As with other workflow files, you locate reusable workflows in the `.github/workflows` directory of a repository. Subdirectories of the `workflows` directory are not supported.
