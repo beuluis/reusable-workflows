@@ -1,0 +1,18 @@
+---
+name: Lint all yaml files in repository
+
+"on":
+  pull_request:
+    branches:
+      - main
+  push:
+
+jobs:
+  Yamllint:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run yamllint
+        uses: karancode/yamllint-github-action@master
+        with:
+          yamllint_strict: true
