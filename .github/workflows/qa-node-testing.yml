@@ -6,22 +6,27 @@
         description: "Node versions matrix to test on"
         default: "['16.x', '17.x', '18.x']"
         required: false
+        type: "string"
       format_command:
         description: "Format command to run. To disable set to ''"
         default: "npm run format"
         required: false
+        type: "string"
       lint_command:
         description: "Lint command to run. To disable set to ''"
         default: "npm run lint"
         required: false
+        type: "string"
       build_command:
         description: "Build command to run"
         default: "npm run build"
         required: false
+        type: "string"
       test_command:
         description: "Test command to run. To disable set to ''"
         default: "npm run test"
         required: false
+        type: "string"
 
 jobs:
   testing:
