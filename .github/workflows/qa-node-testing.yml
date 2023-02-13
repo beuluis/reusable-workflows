@@ -40,9 +40,12 @@ jobs:
         with:
           node-version: "${{ matrix.version }}"
       - run: "npm ci"
-      - if: "github.event.inputs.format_command != '' && strategy.job-index == (strategy.job-total - 1)"
+      - env:
+        LAST_JOB_INDEX_OFFSET: ${{ strategy.job-total}}
+        run: echo ::set-env name=LAST_JOB_INDEX::$(($LAST_JOB_INDEX_OFFSET-1))
+      - if: "github.event.inputs.format_command != '' && strategy.job-index == env.LAST_JOB_INDEX"
         run: "${{ github.event.inputs.format_command }}"
-      - if: "github.event.inputs.lint_command != '' && strategy.job-index == (strategy.job-total - 1)"
+      - if: "github.event.inputs.lint_command != '' && strategy.job-index == env.LAST_JOB_INDEX"
         run: "${{ github.event.inputs.lint_command }}"
       - run: "${{ github.event.inputs.build_command }}"
       - if: "github.event.inputs.test_command != ''"
