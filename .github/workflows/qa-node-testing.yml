@@ -42,7 +42,7 @@ jobs:
       - run: "npm ci"
       - env:
           LAST_JOB_INDEX_OFFSET: ${{ strategy.job-total}}
-        run: echo ::set-env name=LAST_JOB_INDEX::$(($LAST_JOB_INDEX_OFFSET-1))
+        run: echo "LAST_JOB_INDEX=$(($LAST_JOB_INDEX_OFFSET-1))" >> $GITHUB_ENV
       - if: "github.event.inputs.format_command != '' && strategy.job-index == env.LAST_JOB_INDEX"
         run: "${{ github.event.inputs.format_command }}"
       - if: "github.event.inputs.lint_command != '' && strategy.job-index == env.LAST_JOB_INDEX"
