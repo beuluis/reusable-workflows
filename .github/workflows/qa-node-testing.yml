@@ -32,8 +32,8 @@ jobs:
   testing:
     runs-on: "ubuntu-latest"
     strategy:
-    matrix:
-      node_version: "${{ fromJson(inputs.node_versions) }}"
+      matrix:
+        node_version: "${{ fromJson(inputs.node_versions) }}"
     steps:
       - uses: "actions/checkout@v3"
       - uses: "actions/setup-node@v3"
