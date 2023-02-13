@@ -41,7 +41,7 @@ jobs:
           node-version: "${{ matrix.version }}"
       - run: "npm ci"
       - env:
-        LAST_JOB_INDEX_OFFSET: ${{ strategy.job-total}}
+          LAST_JOB_INDEX_OFFSET: ${{ strategy.job-total}}
         run: echo ::set-env name=LAST_JOB_INDEX::$(($LAST_JOB_INDEX_OFFSET-1))
       - if: "github.event.inputs.format_command != '' && strategy.job-index == env.LAST_JOB_INDEX"
         run: "${{ github.event.inputs.format_command }}"
