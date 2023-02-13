@@ -1,0 +1,44 @@
+---
+"on":
+  workflow_call:
+    inputs:
+      node_versions:
+        description: "Node versions matrix to test on"
+        default: "['16.x', '17.x', '18.x']"
+        required: false
+      format_command:
+        description: "Format command to run. To disable set to ''"
+        default: "npm run format"
+        required: false
+      lint_command:
+        description: "Lint command to run. To disable set to ''"
+        default: "npm run lint"
+        required: false
+      build_command:
+        description: "Build command to run"
+        default: "npm run build"
+        required: false
+      test_command:
+        description: "Test command to run. To disable set to ''"
+        default: "npm run test"
+        required: false
+
+jobs:
+  testing:
+    runs-on: "ubuntu-latest"
+    strategy:
+    matrix:
+      node_version: "${{ fromJson(inputs.node_versions) }}"
+    steps:
+      - uses: "actions/checkout@v3"
+      - uses: "actions/setup-node@v3"
+        with:
+          node-version: "${{ matrix.version }}"
+      - run: "npm ci"
+      - if: "github.event.inputs.format_command != '' && strategy.job-index == (strategy.job-total - 1)"
+        run: "${{ github.event.inputs.format_command }}"
+      - if: "github.event.inputs.lint_command != '' && strategy.job-index == (strategy.job-total - 1)"
+        run: "${{ github.event.inputs.lint_command }}"
+      - run: "${{ github.event.inputs.build_command }}"
+      - if: "github.event.inputs.test_command != ''"
+        run: "${{ github.event.inputs.test_command }}"

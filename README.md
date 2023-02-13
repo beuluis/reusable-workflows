@@ -26,6 +26,11 @@
 
 Reusable workflows for all my github stuff. See [reusing-workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows).
 
+## Disclaimer
+
+Most workflows are fitted to my taste of development. This project is still open source since i believe in oversharing is better.
+So if you are going to use this be aware that those workflows are meant for my own repositories and will grow and adapt with the needs of them.
+
 ## Workflows
 
 ### [NPM Publish](.github/workflows/publish-npm.yml)
@@ -44,6 +49,20 @@ Publish a NPM package to the NPM registry.
 | Name        | Description                                 | Required |
 | ----------- | ------------------------------------------- | -------- |
 | `NPM_TOKEN` | NPM token with right access for publishing. | `false`  |
+
+### [Node Testing](.github/workflows/qa-node-testing.yml)
+
+Testing for node app, libraries and components.
+
+#### Inputs
+
+| Name             | Description                                    | Type     | Default                    | Required |
+| ---------------- | ---------------------------------------------- | -------- | -------------------------- | -------- |
+| `node_versions`  | Node versions matrix to test on.               | `string` | `['16.x', '17.x', '18.x']` | `false`  |
+| `format_command` | Format command to run. To disable set to `''`. | `string` | `npm run format`           | `false`  |
+| `lint_command`   | Lint command to run. To disable set to `''`.   | `string` | `npm run lint`             | `false`  |
+| `build_command`  | Build command to run.                          | `string` | `npm run build`            | `false`  |
+| `test_command`   | Test command to run. To disable set to `''`.   | `string` | `npm run test`             | `false`  |
 
 ## Directory structure and file naming
 
