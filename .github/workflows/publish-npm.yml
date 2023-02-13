@@ -25,7 +25,9 @@ jobs:
       - uses: "actions/setup-node@v3"
         with:
           node-version: "${{ github.event.inputs.node_version }}"
-      - run: "npm ci"
-      - run: "npm publish --tag ${{ github.event.inputs.dist_tag }}"
+      - name: "Install node dependencies"
+        run: "npm ci"
+      - name: "Publish to ${{ github.event.inputs.dist_tag } tag"
+        run: "npm publish --tag ${{ github.event.inputs.dist_tag }}"
         env:
           NODE_AUTH_TOKEN: "${{ secrets.NPM_TOKEN }}"
