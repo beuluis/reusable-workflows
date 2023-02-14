@@ -29,8 +29,8 @@ jobs:
         run: "npm ci"
       - name: "Update version for non latest tagged versions"
         if: "inputs.dist_tag != \"latest\""
-        run: "npm version "$(npm pkg get version | sed 's/"//g')-next.$(date +%s).${{ github.sha }}"" --allow-same-version --git-tag-version=false"
-      - name: "Publish to ${{ inputs.dist_tag } tag"
+        run: "npm version \"$(npm pkg get version | sed 's/\"//g')-next.$(date +%s).${{ github.sha }}\" --allow-same-version --git-tag-version=false"
+      - name: "Publish to ${{ inputs.dist_tag }} tag"
         run: "npm publish --tag ${{ inputs.dist_tag }}"
         env:
           NODE_AUTH_TOKEN: "${{ secrets.NPM_TOKEN }}"
