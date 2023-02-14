@@ -1,5 +1,4 @@
 ---
-# TODO: naming all the stuff
 name: "Testing node component with different node versions"
 
 "on":
