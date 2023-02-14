@@ -41,6 +41,7 @@ jobs:
       - uses: "actions/setup-node@v3"
         with:
           node-version: "${{ matrix.version }}"
+          cache: 'npm'
       - name: "Install node dependencies"
         run: "npm ci"
       - name: "Extract the last matrix job index"
