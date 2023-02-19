@@ -1,6 +1,4 @@
 ---
-name: "Testing node component with different node versions"
-
 "on":
   workflow_call:
     inputs:
