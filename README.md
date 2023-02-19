@@ -50,6 +50,22 @@ Publish a NPM package to the NPM registry.
 | ----------- | ------------------------------------------- | -------- |
 | `NPM_TOKEN` | NPM token with right access for publishing. | `false`  |
 
+### [NPM dist-tag remove](.github/workflows/remove-dist-tag-npm.yml)
+
+Remove a dist-tag from the NPM registry.
+
+#### Inputs
+
+| Name       | Description             | Type     | Default | Required |
+| ---------- | ----------------------- | -------- | ------- | -------- |
+| `dist_tag` | NPM dist tag to remove. | `string` |         | `true`   |
+
+#### Secrets
+
+| Name        | Description                               | Required |
+| ----------- | ----------------------------------------- | -------- |
+| `NPM_TOKEN` | NPM token with right access for removing. | `false`  |
+
 ### [Node Testing](.github/workflows/qa-node-testing.yml)
 
 Testing for node app, libraries and components.
