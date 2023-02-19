@@ -5,7 +5,6 @@
       - "main"
   push:
 
-# TODO: use actionlint
 jobs:
   yamllint:
     runs-on: "ubuntu-latest"
@@ -15,3 +14,8 @@ jobs:
         uses: "karancode/yamllint-github-action@master"
         with:
           yamllint_strict: true
+      - uses: actions/setup-go@v3
+        with:
+          go-version: 'stable'
+      - run: go install github.com/rhysd/actionlint/cmd/actionlint@latest
+      - run: actionlint
