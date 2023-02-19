@@ -22,6 +22,6 @@ jobs:
           node-version: "18"
           cache: "npm"
       - name: "Removing ${{ inputs.dist_tag }} tag"
-        run: "npm dist-tag rm $(npm pkg get name | sed 's/"//g') ${{ inputs.dist_tag }}"
+        run: "npm dist-tag rm $(npm pkg get name | sed 's/\"//g') ${{ inputs.dist_tag }}"
         env:
           NODE_AUTH_TOKEN: "${{ secrets.NPM_TOKEN }}"
