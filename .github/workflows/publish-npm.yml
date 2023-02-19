@@ -3,36 +3,36 @@
   workflow_call:
     inputs:
       dist_tag:
-        description: "NPM dist tag to publish to"
-        default: "latest"
+        description: NPM dist tag to publish to
+        default: latest
         required: false
-        type: "string"
+        type: string
       node_version:
-        description: "Node version to build on"
-        default: "18"
+        description: Node version to build on
+        default: 18
         required: false
-        type: "string"
+        type: string
     secrets:
       NPM_TOKEN:
-        description: "NPM token with right access for publishing"
+        description: NPM token with right access for publishing
         required: true
 
 jobs:
   publish:
-    runs-on: "ubuntu-latest"
+    runs-on: ubuntu-latest
     steps:
-      - uses: "actions/checkout@v3"
-      - uses: "actions/setup-node@v3"
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          registry-url: "https://registry.npmjs.org"
-          node-version: "${{ inputs.node_version }}"
-          cache: "npm"
-      - name: "Install node dependencies"
-        run: "npm ci"
-      - name: "Update version for non latest tagged versions"
-        if: "inputs.dist_tag != 'latest'"
-        run: "npm version \"$(npm pkg get version | sed 's/\"//g')-$(date +%s).${{ github.sha }}\" --allow-same-version --git-tag-version=false"
-      - name: "Publish to ${{ inputs.dist_tag }} tag"
-        run: "npm publish --tag ${{ inputs.dist_tag }}"
+          registry-url: https://registry.npmjs.org
+          node-version: ${{ inputs.node_version }}
+          cache: npm
+      - name: Install node dependencies
+        run: npm ci
+      - name: Update version for non latest tagged versions
+        if: inputs.dist_tag != 'latest'
+        run: npm version "$(npm pkg get version | sed 's/\"//g')"-"$(date +%s)".${{ github.sha }} --allow-same-version --git-tag-version=false
+      - name: Publish to ${{ inputs.dist_tag }} tag
+        run: npm publish --tag ${{ inputs.dist_tag }}
         env:
-          NODE_AUTH_TOKEN: "${{ secrets.NPM_TOKEN }}"
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

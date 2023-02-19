@@ -2,25 +2,25 @@
 "on":
   pull_request:
     branches:
-      - "main"
+      - main
   push:
 
 jobs:
   yamllint:
-    runs-on: "ubuntu-latest"
+    runs-on: ubuntu-latest
     steps:
-      - uses: "actions/checkout@v3"
-      - name: "Run yamllint"
-        uses: "karancode/yamllint-github-action@master"
+      - uses: actions/checkout@v3
+      - name: Run yamllint
+        uses: karancode/yamllint-github-action@master
         with:
           yamllint_strict: true
 
   actionlint:
-    runs-on: "ubuntu-latest"
+    runs-on: ubuntu-latest
     steps:
-      - uses: "actions/checkout@v3"
-      - uses: "actions/setup-go@v3"
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
         with:
-          go-version: "stable"
-      - run: "go install github.com/rhysd/actionlint/cmd/actionlint@latest"
-      - run: "actionlint"
+          go-version: stable
+      - run: go install github.com/rhysd/actionlint/cmd/actionlint@latest
+      - run: actionlint
