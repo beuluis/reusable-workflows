@@ -5,6 +5,7 @@
       - "main"
   push:
 
+# TODO: use actionlint
 jobs:
   yamllint:
     runs-on: "ubuntu-latest"
